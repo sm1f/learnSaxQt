@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
-    : QDialog(parent)
+    : QMainWindow(parent)
 {
     resize(QSize(600, 300));
     mainLayout = new QVBoxLayout(this);
@@ -23,15 +23,33 @@ MainWindow::~MainWindow()
 
 void MainWindow::createMenu()
 {
-    QMenuBar* menuBar = new QMenuBar();
-    mainLayout->setMenuBar(menuBar);
-    QMenu* menu = new QMenu(tr("Prime"), menuBar);
+
+    QAction *quit = new QAction("&Quit", this);
+
+    QMenu *file;
+    file = menuBar()->addMenu("&File");
+    file->addAction(quit);
+
+    connect(quit, &QAction::triggered, this, QApplication::quit);
+
+    /*
+
+    QMenu* fileMenu = menuBar()->addMenu(tr("&File"));
+    fileMenu->addAction
+
+    QMenu* menu = new QMenu(tr("Prime"), menuBar());
     QAction* action = menu->addAction(tr("Exit"));
-    menuBar->addMenu(menu);
+    menuBar()->addMenu(menu);
     connect(action, SIGNAL(triggered()), SLOT(nyiSlot()));
+    */
 }
 
 void MainWindow::nyiSlot()
 {
+    std::cout << "nyiSlot" << std::endl;
+}
 
+void MainWindow::nyiSlotS(QString text)
+{
+    std::cout << text.toStdString() << std::endl;
 }

@@ -9,7 +9,7 @@
 #include <QTextEdit>
 #include <QVBoxLayout>
 
-class MainWindow : public QDialog
+class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
@@ -22,6 +22,7 @@ private:
     void createMenu();
 private slots:
     void nyiSlot();
+    void nyiSlotS(QString text);
 };
 
 #endif // MAINWINDOW_H
