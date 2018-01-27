@@ -6,8 +6,7 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
-
-menuBar()->setNativeMenuBar(false);
+    menuBar()->setNativeMenuBar(false);
 
 //    QMenuBar* bar = new QMenuBar(this);
     QMenuBar* bar = menuBar();
