@@ -8,6 +8,10 @@
 #include <QMenuBar>
 #include <QTextEdit>
 #include <QVBoxLayout>
+#include <QApplication>
+#include <QMenu>
+#include <QMenuBar>
+#include <QMainWindow>
 
 class MainWindow : public QMainWindow
 {
@@ -21,7 +25,7 @@ private:
 
     void createMenu();
 private slots:
-    void nyiSlot();
+    static void nyiSlot();
     void nyiSlotS(QString text);
 };
 
