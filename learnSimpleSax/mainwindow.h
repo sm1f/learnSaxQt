@@ -25,8 +25,12 @@ private:
 
     void createMenu();
 private slots:
-    static void nyiSlot();
+    void test1();
+    void test2();
+
+    void nyiSlot();
     void nyiSlotS(QString text);
+
 };
 
 #endif // MAINWINDOW_H

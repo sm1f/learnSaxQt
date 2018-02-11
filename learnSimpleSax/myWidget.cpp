@@ -19,5 +19,4 @@ void MyWidget::myClose()
 void MyWidget::ensureOkToClose()
 {
     // most work in subclasses
-    std::cout <<"EnsureOkToClose called" << std::endl;
-}
+    std::cout <<"EnsureOkToClose called" << std::endl;}

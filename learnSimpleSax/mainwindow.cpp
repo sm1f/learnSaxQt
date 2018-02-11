@@ -8,19 +8,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
     menuBar()->setNativeMenuBar(false);
 
-//    QMenuBar* bar = new QMenuBar(this);
-    QMenuBar* bar = menuBar();
-
-    QMenu* menu1 = new QMenu("First menu", bar);
-    menu1->addMenu("Foo");
-    menu1->addMenu("Bar");
-
-    QMenu* menu2 = new QMenu("Second menu", bar);
-    menu2->addMenu("Foo");
-    menu2->addMenu("Bar");
-
-    bar->addMenu(menu1);
-    bar->addMenu(menu2);
+    resize(QSize(600, 300));
+    createMenu();
 
     /*
     QAction *quit = new QAction("&Quit", this);
@@ -31,8 +20,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(quit, &QAction::triggered, qApp, QApplication::quit);
 
-    resize(QSize(600, 300));
-    createMenu();
 
 
     mainLayout = new QVBoxLayout(this);
@@ -54,13 +41,39 @@ MainWindow::~MainWindow()
 
 void MainWindow::createMenu()
 {
-    QAction *quit = new QAction("&Quit", this);
+    //    QMenuBar* bar = new QMenuBar(this);
+    QMenuBar* bar = menuBar();
 
-    QMenu *file;
-    file = menuBar()->addMenu("&File");
-    file->addAction(quit);
+    QMenu* testsMenu = bar->addMenu(tr("tests"));
+//    testsMenu->addMenu("Test1")->addAction(test1);
+    QAction* tests1Act = new QAction("&Test1", this);
+    testsMenu->addAction(tests1Act);
+    connect(tests1Act, SIGNAL(triggered()),
+            this, SLOT(test1()));
+    testsMenu->addMenu("Test2");
 
-    connect(quit, &QAction::triggered, this, nyiSlot);
+    QMenu* myWidgetMenu = new QMenu("MyWidget", bar);
+    myWidgetMenu->addMenu("Make MyWidget");
+    myWidgetMenu->addMenu("myClose");
+    myWidgetMenu->addMenu("Test2");
+
+    QMenu* menu2 = new QMenu("Second menu", bar);
+    menu2->addMenu("Foo");
+    menu2->addMenu("Bar");
+
+    bar->addMenu(myWidgetMenu);
+    bar->addMenu(menu2);
+
+    QAction *quitAct = new QAction("&Quit", this);
+
+    QMenu *fileMenu = menuBar()->addMenu("&File");
+    fileMenu->addAction(quitAct);
+    //QMenu* topTest1 = bar->addMenu("&TopTest");
+    //topTest1->addAction(quitAct);
+    //connect(topTest1, &QAction::triggered, qApp, QApplication::quit);
+
+//    connect(quit, &QAction::triggered, this, nyiSlot);
+    connect(quitAct, &QAction::triggered, qApp, QApplication::quit);
 
     /*
     QMenu* fileMenu = menuBar()->addMenu(tr("&File"));
@@ -85,6 +98,16 @@ void MainWindow::createMenu()
     menuBar()->addMenu(menu);
     connect(action, SIGNAL(triggered()), SLOT(nyiSlot()));
     */
+}
+
+void MainWindow::test1()
+{
+    std::cout << "MainWindow::test1" << std::endl;
+}
+
+void MainWindow::test2()
+{
+    std::cout << "MainWindow::test2" << std::endl;
 }
 
 void MainWindow::nyiSlot()
